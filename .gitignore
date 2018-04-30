@@ -1,4 +1,13 @@
 problemSets/
+
+modules/data_utils.*
+modules/classifiers/linear_classifier.*
+modules/classifiers/linear_svm.*
+modules/classifiers/neural_net.*
+modules/classifiers/softmax.*
+
 octave-workspace
 vinay_official.jpg
 youngVinay_crop.jpg
+
+*.pyc
