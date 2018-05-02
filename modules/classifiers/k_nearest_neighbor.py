@@ -45,21 +45,48 @@ class KNearestNeighbor:
 
         """
         if num_loops == 0:
-            dists = self.compute_disatances_no_loops(X, distance_metric=distance_metric)
+            dist_matrix = self.compute_disatances_no_loops(X, distance_metric=distance_metric)
         elif num_loops == 1:
-            dists = self.compute_disatances_one_loops(X, distance_metric=distance_metric)
+            dist_matrix = self.compute_disatances_one_loops(X, distance_metric=distance_metric)
         elif num_loops == 2:
-            dists = self.compute_disatances_two_loops(X, distance_metric=distance_metric)
+            dist_matrix = self.compute_disatances_two_loops(X, distance_metric=distance_metric)
         else:
             raise ValueError('Invalidvalue %d for num_loops' % num_loops)
         
-        return self.predict_labels(distances=dists, k=k)
+        return self.predict_labels(distances=dist_matrix, k=k)
 
         
 
     def compute_disatances_two_loops(self, X, distance_metric=1):
-        pass
-    
+        """
+        Inputs:
+        - X: Test data; a numpy array of shape (num_test, D) where each num_test test-point is a D-dimensioanl vector
+        - distance_metric: metric used to calculate the distance b/w the test-point and training-point
+
+        Returns:
+        - dist_matrix: a numpy array of shape (num_test, num_train) 
+                dist_matrix[i,j] is the distance b/w X[i] and self.X_train[j]
+
+        """
+        num_test = X.shape[0]
+        num_train = self.X_train[0]
+        dist_matrix = np.zeros((num_test, num_train))
+
+        for i in range(num_test):
+            for j in range(num_train):
+                if distance_metric == 1:
+                    # L1 (Manhattan) Distance
+                    dist_matrix[i][j] = np.sum(np.abs(self.X_train[j,:] - X[i,:]))
+                elif distance_metric == 2:
+                    # L2 (Eucledian) Distance
+                    dist_matrix[i][j] = np.sqrt(np.sum(np.square(self.X_train[j,:] - X[i,:])))
+                else:
+                    raise ValueError('Invalid value %d for distance_metric. Allowed values: 1, 2' % distance_metric)
+
+        return dist_matrix
+
+
+
     def compute_disatances_one_loops(self, X, distance_metric=1):
         pass
     
