@@ -131,7 +131,7 @@ class KNearestNeighbor:
 
         if distance_metric == 1:
             pass
-        elif distance_metric == 2
+        elif distance_metric == 2:
             # L2 (Eucledian) Matrix using (a-b)^2 = a^2 + b^2 - 2ab
             dist_matrix = np.sqrt((-2)*(np.dot(X, self.X_train.T)) + np.sum(np.square(self.X_train), axis=1) + np.transpose([np.sum(np.square(X), axis=1)]))
         else:
