@@ -45,9 +45,9 @@ class KNearestNeighbor:
 
         """
         if num_loops == 0:
-            dist_matrix = self.compute_distances_no_loops(X, distance_metric=distance_metric)
+            dist_matrix = self.compute_distances_no_loop(X, distance_metric=distance_metric)
         elif num_loops == 1:
-            dist_matrix = self.compute_distances_one_loops(X, distance_metric=distance_metric)
+            dist_matrix = self.compute_distances_one_loop(X, distance_metric=distance_metric)
         elif num_loops == 2:
             dist_matrix = self.compute_distances_two_loops(X, distance_metric=distance_metric)
         else:
@@ -69,7 +69,9 @@ class KNearestNeighbor:
 
         """
         num_test = X.shape[0]
-        num_train = self.X_train[0]
+        # print(num_test)
+        num_train = self.X_train.shape[0]
+        # print(num_train )
         dist_matrix = np.zeros((num_test, num_train))
 
         for i in range(num_test):
@@ -87,7 +89,7 @@ class KNearestNeighbor:
 
 
 
-    def compute_distances_one_loops(self, X, distance_metric=1):
+    def compute_distances_one_loop(self, X, distance_metric=1):
         """
         Inputs:
         - X: Test data; a numpy array of shape (num_test, D) where each num_test test-point is a D-dimensioanl vector
@@ -99,7 +101,9 @@ class KNearestNeighbor:
         """
 
         num_test = X.shape[0]
-        num_train = self.X_train[0]
+        # print(num_test)
+        num_train = self.X_train.shape[0]
+        # print(num_train )
         dist_matrix = np.zeros((num_test, num_train))
 
         for i in range(num_test):
@@ -110,11 +114,11 @@ class KNearestNeighbor:
             else:
                 raise ValueError('Invalid value %d for distance_metric' % distance_metric)
         
-        return distance_metric
+        return dist_matrix
 
     
 
-    def compute_distances_no_loops(self, X, distance_metric=1):
+    def compute_distances_no_loop(self, X, distance_metric=1):
         """
         Inputs:
         - X: Test data; a numpy array of shape (num_test, D) where each num_test test-point is a D-dimensioanl vector
@@ -126,7 +130,9 @@ class KNearestNeighbor:
 
         """
         num_test = X.shape[0]
-        num_train = self.X_train[0]
+        # print(num_test)
+        num_train = self.X_train.shape[0]
+        # print(num_train )
         dist_matrix = np.zeros((num_test, num_train))
 
         if distance_metric == 1:
@@ -165,12 +171,15 @@ class KNearestNeighbor:
             
             # voting among the k-nearest-neighbors
             kNN_labels = {}
+            # print(type(kNN_labels))
 
             for j in range(k):
                 m_label = self.Y_train[kNN_idxs[j]]
                 if m_label in kNN_labels.keys():
+                    # print(type(kNN_labels))
                     kNN_labels[m_label] += 1        # increment count
                 else:
+                    # print(m_label,'....', type(kNN_labels))
                     kNN_labels[m_label] = 1         # initial count when the label occurs
             
             # counting the winning label
@@ -191,6 +200,7 @@ class KNearestNeighbor:
         return Y_pred
         
 ####################################################################################################
+
 ############################### THE END ############################################################
 
 

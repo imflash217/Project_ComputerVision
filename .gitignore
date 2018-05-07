@@ -1,4 +1,8 @@
 problemSets/
+datasets/
+
+*.ipynb
+.ipynb_checkpoints
 
 modules/data_utils.*
 modules/classifiers/linear_classifier.*
