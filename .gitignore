@@ -6,7 +6,6 @@ datasets/
 
 modules/data_utils.*
 modules/classifiers/linear_classifier.*
-modules/classifiers/linear_svm.*
 modules/classifiers/neural_net.*
 modules/classifiers/softmax.*
 
