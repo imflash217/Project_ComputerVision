@@ -6,7 +6,6 @@ datasets/
 
 modules/data_utils.*
 modules/classifiers/neural_net.*
-modules/classifiers/linear_classifier.*
 modules/classifiers/softmax.*
 
 octave-workspace
