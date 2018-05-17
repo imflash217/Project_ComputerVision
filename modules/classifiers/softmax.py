@@ -102,7 +102,7 @@ def softmax_loss_vectorized(W, X, y, reg):
 
 	dSoft = scores_exp_norm.copy()
 	dSoft[np.arange(num_train), y] += -1
-	dW += X.T.dot(dSoft)  	
+	dW += X.T.dot(dSoft)
 
 	# dW += X.T.dot(scores_exp_norm)			# ERROR
 	# dW[:,y] += -1 * np.sum(X, axis=1).T		# ERROR
