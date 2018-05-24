@@ -43,3 +43,69 @@ class TwoLayerNet(object):
 		self.params['b1'] = np.zeros(hidden_size)
 		self.params['W2'] = std * np.random.randn(hidden_size, output_size)
 		self.params['b2'] = np.zeros(output_size)
+	
+	def loss(self, X, y=None, reg=0.0):
+		"""
+		Computes the loss and gradients for a two-layer fully connected neural network
+
+		Inputs:
+		- X : Input data of shape (N,D). Each X[i] is a training sample
+		- y : Vector of training labels. y[i] is the label for X[i].
+				0 <= y[i] <= C
+			  This is optional. If y is NOTot given as an input then we just return the scores.
+			  If y is given as an input then we return both 'scores' and 'gradients'
+		- reg : Regularization strength
+
+		Returns:
+			Case-1 : If y is None the just return the scores matrix of shape (N, C)
+						where scores[i,c] is the score of X[i] for tha label c
+			Case-2 : If y is NOT None, returns a tuple of (loss, grads)
+		- loss : Loss(data loss and regularization loss)
+		- grads : Dictionary mapping parameter names to gradients of those parameters wrt the loss function;
+					has the same keys as self.params (i.e. W1, b1, W2, b2)
+		
+		"""
+
+		N, D = X.shape
+		W1 = self.params['W1']
+		b1 = self.params['b1']
+		W2 = self.params['W2']
+		b2 = self.params['b2']
+
+		# FORWARD pass
+		# perform the Forward pass computing the class scores for the input
+		# Store the scores in an array of shape (N, C)
+
+		scores = None						# shape : (N, C)
+		scores = X.dot(W1)					# layer-1 scores
+		scores = np.maximum(0, scores)		# ReLU nonlinearity
+		scores = scores.dot(W2)				# layer-2 scores
+
+		# check if the targets (i.e. y) are given or not
+		if y == None:
+			return scores		# if the targets are not given then just return the scores
+		
+		# If the targets are given the compute the loass and calculate the gradients
+
+		# compute the loss
+		loss = None			# shape : integer
+
+
+
+		# BACKWARD pass
+		# compute the gradients
+		grads = {}
+
+
+		return loss, grads
+
+		#########################################################################################
+
+
+
+
+
+
+
+
+
