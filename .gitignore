@@ -5,6 +5,6 @@ modules/data_utils.*
 
 .ipynb_checkpoints
 
-*.ipynb
+a15*
 *.pyc
 
