@@ -5,7 +5,6 @@ datasets/
 .ipynb_checkpoints
 
 modules/data_utils.*
-modules/classifiers/neural_net.*
 
 octave-workspace
 vinay_official.jpg
