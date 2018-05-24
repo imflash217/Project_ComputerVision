@@ -1,13 +1,10 @@
+octave-workspace
 problemSets/
 datasets/
-
-*.ipynb
-.ipynb_checkpoints
-
 modules/data_utils.*
 
-octave-workspace
-vinay_official.jpg
-youngVinay_crop.jpg
+.ipynb_checkpoints
 
+*.ipynb
 *.pyc
+
