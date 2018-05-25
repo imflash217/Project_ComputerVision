@@ -82,13 +82,23 @@ class TwoLayerNet(object):
 		scores = scores.dot(W2)				# layer-2 scores
 
 		# check if the targets (i.e. y) are given or not
-		if y == None:
-			return scores		# if the targets are not given then just return the scores
+		# if y == None:
+		# 	return scores		# if the targets are not given then just return the scores
 		
 		# If the targets are given the compute the loass and calculate the gradients
 
-		# compute the loss
+		# compute the SOFTMAX loss
 		loss = None			# shape : integer
+		scores -= np.transpose([np.max(scores, axis=1)])	# normalization trick to prevent exponentiation boom
+		scores = np.exp(scores)								# exponentiation
+		scores = scores / np.sum(scores, axis=1)[:,None]	# normalization
+		
+		#  loss : L = (1/N) * sum(L_i) + (lambda * R^2)
+		loss = np.sum(-1*np.log(scores[np.arange(N), y]))
+		loss /= N
+		loss += reg * (np.sum(W1*W1) + np.sum(W2*W2))		# L2 regularization
+
+
 
 
 
